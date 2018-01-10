@@ -1,6 +1,6 @@
 (function (window) {
 	'use strict';
-	let indexId = Number(localStorage.getItem('length'));
+	let indexId = Number(localStorage.getItem('index')) || 1;
 	let currentHash = window.location.hash.split('#/')[1];
 	let list = JSON.parse(localStorage.getItem('list')) || [];
 	const input = document.querySelector('[data-id="todo-input"]');
@@ -127,7 +127,7 @@
 		});
 		document.querySelector('strong').innerHTML = list.filter(item => item.status === 'active').length;
 
-		localStorage.setItem('length', list.length);
+		localStorage.setItem('length', String(indexId));
 		localStorage.setItem('list', JSON.stringify(list));
 		checkToggleAll();
 	}
