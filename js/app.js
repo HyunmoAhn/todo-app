@@ -5,6 +5,7 @@
 	let list = JSON.parse(localStorage.getItem('list')) || [];
 	const input = document.querySelector('[data-id="todo-input"]');
 	const ul = document.querySelector('.todo-list');
+	const toggleAll = document.querySelector('[data-id="toggle-all"]');
 
 	// make html element
 	function createListElement(item) {
@@ -55,7 +56,7 @@
 			const text = document.createTextNode(item.name);
 			label.appendChild(text);
 			const button = document.createElement('button');
-			button.classList.add('destory');
+			button.classList.add('destroy');
 
 			div.appendChild(input);
 			div.appendChild(label);
@@ -78,6 +79,7 @@
 		indexId++;
 	}
 
+	// edit todo item in list
 	function editTodoList(id, key, value) {
 		let target = list.find(item => item.id === id);
 
@@ -87,11 +89,13 @@
 		renderList();
 	}
 
+	// delete todo item in list
 	function deleteTodoList(id) {
 		list = list.filter(item => item.id !== id);
 		renderList();
 	}
 
+	// filter list todo list
 	function filterList() {
 		if (currentHash === 'active') {
 			return list.filter(item => item.status === 'active');
@@ -102,6 +106,18 @@
 		}
 	}
 
+	// if all items checked ToggleAll is check else not
+	function checkToggleAll() {
+		const completedList = list.filter(item => item.status === 'completed');
+
+		if (list.length === completedList.length) {
+			toggleAll.checked = true;
+		} else {
+			toggleAll.checked = false;
+		}
+	}
+
+	// update html code
 	function renderList() {
 		const filteredList= filterList();
 
@@ -109,10 +125,11 @@
 		filteredList.forEach((item) => {
 			ul.appendChild(createListElement(item));
 		});
-		document.querySelector('strong').innerHTML = filteredList.length;
+		document.querySelector('strong').innerHTML = list.filter(item => item.status === 'active').length;
 
 		localStorage.setItem('length', list.length);
 		localStorage.setItem('list', JSON.stringify(list));
+		checkToggleAll();
 	}
 
 	// add todo list
@@ -124,6 +141,7 @@
 		}
 	});
 
+	// clear completed item
 	document.querySelector('.clear-completed').addEventListener('click', () => {
 		list.forEach(item => {
 			if (item.status === 'completed') {
@@ -132,6 +150,7 @@
 		});
 	});
 
+	// click event
 	ul.addEventListener('click', (e) => {
 		const target = e.target;
 
@@ -149,6 +168,7 @@
 		}
 	}, false);
 
+	// double click event
 	ul.addEventListener('dblclick', (e) => {
 		const target = e.target;
 
@@ -178,6 +198,19 @@
 				}
 			});
 		}
+	});
+
+	// toggleAll click event
+	toggleAll.addEventListener('click', () => {
+		const completedList = list.filter(item => item.status === 'completed');
+
+		if (list.length === completedList.length) {
+			list.forEach(item => item.status = 'active');
+		} else {
+			list.forEach(item => item.status = 'completed');
+		}
+
+		renderList();
 	});
 
 	window.onhashchange = () => {
