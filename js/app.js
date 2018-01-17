@@ -1,14 +1,17 @@
 (function (window) {
 	'use strict';
 	let indexId = Number(localStorage.getItem('index')) || 1;
-	let currentHash = window.location.hash.split('#/')[1];
 	let list = JSON.parse(localStorage.getItem('list')) || [];
-	const input = document.querySelector('[data-id="todo-input"]');
+	let currentHash = window.location.hash.split('#/')[1];
+
+		const input = document.querySelector('[data-id="todo-input"]');
 	const ul = document.querySelector('.todo-list');
 	const toggleAll = document.querySelector('[data-id="toggle-all"]');
 
 	// make html element
 	function createListElement(item) {
+
+		// make edited input tag element
 		if (item.isEdit) {
 			const input = document.createElement('input');
 			input.classList.add('edit');
@@ -18,6 +21,7 @@
 			return input;
 		}
 
+		// make active li tag element
 		if (item.status === 'active') {
 			const li = document.createElement('li');
 			li.setAttribute('data-id', item.id);
@@ -31,7 +35,6 @@
 			label.appendChild(text);
 			const button = document.createElement('button');
 			button.classList.add('destroy');
-			// button.innerHTML = 'x';
 
 			div.appendChild(input);
 			div.appendChild(label);
@@ -42,6 +45,7 @@
 			return li;
 		}
 
+		// make completed li tag element
 		if (item.status === 'completed') {
 			const li = document.createElement('li');
 			li.setAttribute('data-id', item.id);
@@ -77,6 +81,7 @@
 			isEdit: false,
 		});
 		indexId++;
+		renderList()
 	}
 
 	// edit todo item in list
@@ -121,23 +126,40 @@
 	function renderList() {
 		const filteredList= filterList();
 
+		// update item of li tag in list that ul tag
 		ul.innerHTML = '';
 		filteredList.forEach((item) => {
 			ul.appendChild(createListElement(item));
 		});
+
+		// update number of active item in left bottom number
 		document.querySelector('strong').innerHTML = list.filter(item => item.status === 'active').length;
 
+		// check if all toggle button is active
+		checkToggleAll();
+
+		// save information in local storage
 		localStorage.setItem('length', String(indexId));
 		localStorage.setItem('list', JSON.stringify(list));
-		checkToggleAll();
 	}
 
-	// add todo list
+	function updateFilterStyle() {
+		const aTag = document.querySelectorAll('.filters a');
+
+		aTag.forEach(a => {
+			a.className = '';
+		});
+
+		if (!currentHash) aTag[0].className = 'selected';
+		else if (currentHash === 'active') aTag[1].className = 'selected';
+		else aTag[2].className = 'selected';
+	}
+
+	// add todo list in main input
 	input.addEventListener('keypress', (e) => {
 		if (e.keyCode === 13 && input.value) {
 			addTodoListInitial(input.value);
 			input.value = '';
-			renderList()
 		}
 	});
 
@@ -150,7 +172,7 @@
 		});
 	});
 
-	// click event
+	// click event in ul tag using capturing
 	ul.addEventListener('click', (e) => {
 		const target = e.target;
 
@@ -168,7 +190,7 @@
 		}
 	}, false);
 
-	// double click event
+	// double click event in ul tag using capturing
 	ul.addEventListener('dblclick', (e) => {
 		const target = e.target;
 
@@ -216,19 +238,10 @@
 	window.onhashchange = () => {
 		currentHash = window.location.hash.split('#/')[1];
 
-		const aTag = document.querySelectorAll('.filters a');
-
-		aTag.forEach(a => {
-			a.className = '';
-		});
-
-		if (!currentHash) aTag[0].className = 'selected';
-		else if (currentHash === 'active') aTag[1].className = 'selected';
-		else aTag[2].className = 'selected';
-
 		renderList();
+		updateFilterStyle();
 	};
 
-	// Your starting point. Enjoy the ride!
 	renderList();
+	updateFilterStyle();
 })(window);
