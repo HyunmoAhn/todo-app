@@ -1,6 +1,17 @@
-# TodoMVC
+# TodoMVC using VanillaJS
+
+
+> Using Only Vanilla JS (mixed ES5 and ES6)
 
 ![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
+
+
+## Doing
+
+- Using DevelopEnvironment using webpack and webpack-dev-server
+- Read the [Application Specification](https://github.com/tastejs/todomvc/blob/master/app-spec.md) before touching the template.
+- Using [this](https://github.com/tastejs/todomvc-app-template) and coding .js code
+
 
 ## Flow language of korean
 
