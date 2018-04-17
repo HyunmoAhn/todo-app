@@ -2,17 +2,34 @@
   "private": true,
   "scripts": {
     "start:vanilla": "webpack-dev-server --mode development --config ./VanillaJS/webpack.config.js",
-    "build:vanilla": "webpack --mode production --config ./VanillaJS/webpack.config.js"
+    "start:react": "webpack-dev-server --mode development --config ./ReactJS/webpack.config.js",
+    "build:vanilla": "webpack --mode production --config ./VanillaJS/webpack.config.js",
+    "build:react": "webpack --mode production --config ./ReactJS/webpack.config.js"
   },
   "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0",
     "webpack": "^4.5.0",
     "webpack-dev-server": "^3.1.3"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
     "node-sass": "^4.8.3",
     "style-loader": "^0.20.3",
     "webpack-cli": "^2.0.14"
