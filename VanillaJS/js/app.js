@@ -1,3 +1,6 @@
+import '../../node_modules/todomvc-app-css/index.css';
+import '../../node_modules/todomvc-common/base.css';
+
 (function (window) {
   'use strict';
   let indexId = Number(localStorage.getItem('index')) || 1;
