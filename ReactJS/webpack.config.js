@@ -9,31 +9,30 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
-    port: 4001
+    port: 4001,
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-          },
-        ],
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.css$/,
         use: [
           'style-loader',
           'css-loader',
-        ]
+        ],
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
-    })
-  ]
+    }),
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };

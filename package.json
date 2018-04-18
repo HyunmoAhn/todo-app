@@ -1,10 +1,21 @@
 {
+  "name": "todo-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/HyunmoAhn/todo-app",
+  "author": "hyunmoahn <mos_dev@naver.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start:vanilla": "webpack-dev-server --mode development --config ./VanillaJS/webpack.config.js",
     "start:react": "webpack-dev-server --mode development --config ./ReactJS/webpack.config.js",
     "build:vanilla": "webpack --mode production --config ./VanillaJS/webpack.config.js",
-    "build:react": "webpack --mode production --config ./ReactJS/webpack.config.js"
+    "build:react": "webpack --mode production --config ./ReactJS/webpack.config.js",
+    "lint": "yarn lint:react",
+    "lint:react": "eslint -c ./ReactJS/.eslintrc ReactJS/src --ignore-path ./ReactJS/.eslintignore --ext .js,.jsx",
+    "lint-staged:react": "lint-staged -c ./ReactJS/.lintstagedrc",
+    "precommit": "yarn lint-staged:react",
+    "prepush": "yarn lint"
   },
   "dependencies": {
     "prop-types": "^15.6.1",
