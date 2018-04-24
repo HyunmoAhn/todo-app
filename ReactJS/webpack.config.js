@@ -33,6 +33,10 @@ module.exports = {
     }),
   ],
   resolve: {
+    alias: {
+      node_modules: path.resolve(__dirname, '../node_modules'),
+      components: path.resolve(__dirname, 'src/components'),
+    },
     extensions: ['.js', '.jsx'],
   },
 };
