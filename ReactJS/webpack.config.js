@@ -36,6 +36,7 @@ module.exports = {
     alias: {
       node_modules: path.resolve(__dirname, '../node_modules'),
       components: path.resolve(__dirname, 'src/components'),
+      store: path.resolve(__dirname, 'src/store'),
     },
     extensions: ['.js', '.jsx'],
   },
