@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
+  mode: 'development',
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
     port: 4001,

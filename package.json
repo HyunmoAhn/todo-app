@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start:vanilla": "webpack-dev-server --mode development --config ./VanillaJS/webpack.config.js",
-    "start:react": "webpack-dev-server --mode development --config ./ReactJS/webpack.config.js",
+    "start:react": "webpack-dev-server --hot --inline --config ./ReactJS/webpack.config.js",
     "build:vanilla": "webpack --mode production --config ./VanillaJS/webpack.config.js",
     "build:react": "webpack --mode production --config ./ReactJS/webpack.config.js",
     "lint": "yarn lint:react",
@@ -21,6 +21,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-hot-loader": "^4.1.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "todomvc-app-css": "^2.0.0",
