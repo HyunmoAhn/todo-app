@@ -10,16 +10,22 @@ const propTypes = {
       id: PropTypes.string,
     }),
   ),
+  onDeleteListItem: PropTypes.func,
   onToggleListItem: PropTypes.func,
 };
 const defaultProps = {
   todoList: {},
+  onDeleteListItem() {},
   onToggleListItem() {},
 };
 
 class TodoList extends React.Component {
   render() {
-    const { todoList, onToggleListItem } = this.props;
+    const {
+      todoList,
+      onToggleListItem,
+      onDeleteListItem,
+    } = this.props;
 
     return (
       <section className="main">
@@ -28,6 +34,7 @@ class TodoList extends React.Component {
             <TodoListItem
               key={item.id}
               item={item}
+              onDeleteListItem={onDeleteListItem}
               onToggleListItem={onToggleListItem}
             />))
           }
