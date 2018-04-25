@@ -3,7 +3,7 @@ import moment from 'moment';
 import * as STATUS from 'constants/status';
 import * as TYPES from '../actionTypes';
 
-export const addListItem = value => ({ // eslint-disable-line
+export const addListItem = value => ({
   type: TYPES.TODO_ADD_LIST_ITEM,
   payload: {
     createTime: moment().toISOString(),
@@ -11,5 +11,12 @@ export const addListItem = value => ({ // eslint-disable-line
     status: STATUS.NORMAL,
     updateTime: moment().toISOString(),
     value,
+  },
+});
+
+export const toggleListItem = id => ({
+  type: TYPES.TODO_TOGGLE_LIST_ITEM,
+  payload: {
+    id,
   },
 });
