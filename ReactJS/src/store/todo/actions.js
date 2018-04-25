@@ -1,5 +1,6 @@
 import { v4 } from 'uuid';
 import moment from 'moment';
+import * as STATUS from 'constants/status';
 import * as TYPES from '../actionTypes';
 
 export const addListItem = value => ({ // eslint-disable-line
@@ -7,6 +8,7 @@ export const addListItem = value => ({ // eslint-disable-line
   payload: {
     createTime: moment().toISOString(),
     id: v4(),
+    status: STATUS.NORMAL,
     updateTime: moment().toISOString(),
     value,
   },

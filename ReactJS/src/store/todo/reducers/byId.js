@@ -8,6 +8,7 @@ function byIdReducer(state = initialState, actions) {
       const {
         createTime,
         id,
+        status,
         updateTime,
         value,
       } = actions.payload;
@@ -17,6 +18,7 @@ function byIdReducer(state = initialState, actions) {
         createTime,
         id,
         updateTime,
+        status,
         value,
       };
 

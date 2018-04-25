@@ -7,6 +7,7 @@ import TodoList from './TodoList';
 const propTypes = {
   todoList: PropTypes.arrayOf(
     PropTypes.shape({
+      status: PropTypes.string,
       value: PropTypes.string,
       id: PropTypes.string,
     }),
