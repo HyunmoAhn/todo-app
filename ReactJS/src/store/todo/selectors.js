@@ -21,6 +21,7 @@ export const getTodoList = (state) => {
 
     return {
       id: info.id,
+      status: info.status,
       value: info.value,
     };
   });

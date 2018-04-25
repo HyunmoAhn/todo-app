@@ -1,43 +1,35 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import TodoListItem from '../TodoListItem';
 
-const propTypes = {};
-const defaultProps = {};
+const propTypes = {
+  todoList: PropTypes.arrayOf(
+    PropTypes.shape({
+      status: PropTypes.string,
+      value: PropTypes.string,
+      id: PropTypes.string,
+    }),
+  ),
+};
+const defaultProps = {
+  todoList: {},
+};
 
-class TodoHeader extends React.Component {
+class TodoList extends React.Component {
   render() {
+    const { todoList } = this.props;
+
     return (
       <section className="main">
         <ul className="todo-list">
-          <li>
-            <div className="view">
-              <input type="checkbox" className="toggle" />
-              <label>value</label>
-              <button className="destroy" />
-            </div>
-          </li>
-          <li className="completed">
-            <div className="view">
-              <input type="checkbox" className="toggle" />
-              <label>value2</label>
-              <button className="destroy" />
-            </div>
-          </li>
-          <li className="editing">
-            <div className="view">
-              <input type="checkbox" className="toggle" />
-              <label>value2</label>
-              <button className="destroy" />
-            </div>
-            <input type="text" className="edit" />
-          </li>
+          {todoList.map(item => <TodoListItem key={item.id} item={item} />)}
         </ul>
       </section>
     );
   }
 }
 
-TodoHeader.propTypes = propTypes;
-TodoHeader.defaultProps = defaultProps;
+TodoList.propTypes = propTypes;
+TodoList.defaultProps = defaultProps;
 
-export default TodoHeader;
+export default TodoList;
