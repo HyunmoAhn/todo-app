@@ -1,15 +1,55 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-const propTypes = {};
-const defaultProps = {};
+const propTypes = {
+  onAddListItem: PropTypes.func,
+};
+const defaultProps = {
+  onAddListItem() {},
+};
 
 class TodoHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleAddList = this.handleAddList.bind(this);
+    this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  handleInputKeyDown(e) {
+    if (e.key === 'Enter') {
+      this.handleAddList();
+      this.setState({ value: '' });
+    }
+  }
+
+  handleAddList() {
+    if (this.state.value) {
+      this.props.onAddListItem(this.state.value);
+    }
+  }
+
   render() {
+    const { value } = this.state;
+
     return (
       <header className="header">
         <h1>todos</h1>
-        <input className="new-todo" type="text" placeholder="What needs to be done?" />
+        <input
+          className="new-todo"
+          type="text"
+          placeholder="What needs to be done?"
+          value={value}
+          onChange={this.handleChange}
+          onKeyDown={this.handleInputKeyDown}
+        />
         <input className="toggle-all" id="toggle-all" type="checkbox" />
         <label style={{ top: '15px' }} htmlFor="toggle-all">Mark all async complete</label>
       </header>
