@@ -25,7 +25,13 @@ function byIdReducer(state = initialState, actions) {
 
       return nextState;
     }
+    case TYPES.TODO_DELETE_LIST_ITEM: {
+      const nextState = Object.assign({}, state);
 
+      delete nextState[actions.payload.id];
+
+      return nextState;
+    }
     case TYPES.TODO_TOGGLE_LIST_ITEM: {
       const { id } = actions.payload;
       const item = Object.assign({}, state[id], {
@@ -37,7 +43,6 @@ function byIdReducer(state = initialState, actions) {
         [id]: item,
       });
     }
-
     default: {
       return state;
     }
