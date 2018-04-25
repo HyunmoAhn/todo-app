@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import Todo from 'components/Todo';
-import Counter from 'containers/CounterContainer';
 import { hot } from 'react-hot-loader';
 import store from './store';
 
@@ -10,7 +9,6 @@ function App() {
     <Provider store={store}>
       <div>
         <Todo />
-        <Counter />
       </div>
     </Provider>
   );
