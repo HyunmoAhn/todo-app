@@ -10,7 +10,11 @@ function idsReducer(state = initialState, actions) {
       nextState.push(actions.payload.id);
       return nextState;
     }
+    case TYPES.TODO_DELETE_LIST_ITEM: {
+      const { id } = actions.payload;
 
+      return state.filter(item => item !== id);
+    }
     default: {
       return state;
     }

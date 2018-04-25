@@ -14,6 +14,13 @@ export const addListItem = value => ({
   },
 });
 
+export const deleteListItem = id => ({
+  type: TYPES.TODO_DELETE_LIST_ITEM,
+  payload: {
+    id,
+  },
+});
+
 export const toggleListItem = id => ({
   type: TYPES.TODO_TOGGLE_LIST_ITEM,
   payload: {
