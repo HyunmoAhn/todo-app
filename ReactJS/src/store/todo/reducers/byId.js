@@ -1,4 +1,5 @@
 import * as TYPES from 'store/actionTypes';
+import * as STATUS from 'constants/status';
 
 const initialState = {};
 
@@ -23,6 +24,18 @@ function byIdReducer(state = initialState, actions) {
       };
 
       return nextState;
+    }
+
+    case TYPES.TODO_TOGGLE_LIST_ITEM: {
+      const { id } = actions.payload;
+      const item = Object.assign({}, state[id], {
+        status: state[id].status === STATUS.NORMAL
+          ? STATUS.COMPLETE : STATUS.NORMAL,
+      });
+
+      return Object.assign({}, state, {
+        [id]: item,
+      });
     }
 
     default: {
