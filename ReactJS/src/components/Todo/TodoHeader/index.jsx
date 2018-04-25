@@ -16,14 +16,14 @@ class TodoHeader extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleAddList = this.handleAddList.bind(this);
-    this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
+    this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
   }
 
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
 
-  handleInputKeyDown(e) {
+  handleInputKeyPress(e) {
     if (e.key === 'Enter') {
       this.handleAddList();
       this.setState({ value: '' });
@@ -31,8 +31,10 @@ class TodoHeader extends React.Component {
   }
 
   handleAddList() {
-    if (this.state.value) {
+    if (this.state.value.trim()) {
       this.props.onAddListItem(this.state.value);
+    } else {
+      this.setState({ value: '' });
     }
   }
 
@@ -48,7 +50,7 @@ class TodoHeader extends React.Component {
           placeholder="What needs to be done?"
           value={value}
           onChange={this.handleChange}
-          onKeyDown={this.handleInputKeyDown}
+          onKeyPress={this.handleInputKeyPress}
         />
         <input className="toggle-all" id="toggle-all" type="checkbox" />
         <label style={{ top: '15px' }} htmlFor="toggle-all">Mark all async complete</label>
