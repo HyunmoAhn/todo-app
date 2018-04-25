@@ -9,10 +9,12 @@ const propTypes = {
     id: PropTypes.string,
     status: PropTypes.string,
   }),
+  onDeleteListItem: PropTypes.func,
   onToggleListItem: PropTypes.func,
 };
 const defaultProps = {
   item: {},
+  onDeleteListItem() {},
   onToggleListItem() {},
 };
 
@@ -20,6 +22,7 @@ class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleToggleListItem = this.handleToggleListItem.bind(this);
+    this.handleDeleteListItem = this.handleDeleteListItem.bind(this);
   }
 
   handleToggleListItem() {
@@ -27,6 +30,13 @@ class TodoListItem extends React.Component {
 
     onToggleListItem(item.id);
   }
+
+  handleDeleteListItem() {
+    const { item, onDeleteListItem } = this.props;
+
+    onDeleteListItem(item.id);
+  }
+
 
   render() {
     const { item } = this.props;
@@ -45,7 +55,10 @@ class TodoListItem extends React.Component {
             onClick={this.handleToggleListItem}
           />
           <label>{item.value}</label>
-          <button className="destroy" />
+          <button
+            className="destroy"
+            onClick={this.handleDeleteListItem}
+          />
         </div>
         <input type="text" className="edit" />
       </li>
