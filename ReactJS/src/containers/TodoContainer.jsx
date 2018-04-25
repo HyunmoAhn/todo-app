@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import Todo from 'components/Todo';
-import { addListItem } from 'store/todo/actions';
+import {
+  addListItem,
+  toggleListItem,
+} from 'store/todo/actions';
 import { getTodoList } from 'store/todo/selectors';
 
 const mapStateToProps = state => ({
@@ -9,6 +12,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onAddListItem: value => dispatch(addListItem(value)),
+  onToggleListItem: id => dispatch(toggleListItem(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);

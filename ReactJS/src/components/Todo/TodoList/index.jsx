@@ -10,19 +10,27 @@ const propTypes = {
       id: PropTypes.string,
     }),
   ),
+  onToggleListItem: PropTypes.func,
 };
 const defaultProps = {
   todoList: {},
+  onToggleListItem() {},
 };
 
 class TodoList extends React.Component {
   render() {
-    const { todoList } = this.props;
+    const { todoList, onToggleListItem } = this.props;
 
     return (
       <section className="main">
         <ul className="todo-list">
-          {todoList.map(item => <TodoListItem key={item.id} item={item} />)}
+          {todoList.map(item => (
+            <TodoListItem
+              key={item.id}
+              item={item}
+              onToggleListItem={onToggleListItem}
+            />))
+          }
         </ul>
       </section>
     );

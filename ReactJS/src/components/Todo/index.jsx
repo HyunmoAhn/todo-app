@@ -13,22 +13,31 @@ const propTypes = {
     }),
   ),
   onAddListItem: PropTypes.func,
+  onToggleListItem: PropTypes.func,
 };
 
 const defaultProps = {
   todoList: [],
   onAddListItem() {},
+  onToggleListItem() {},
 };
 
 function Todo(props) {
-  const { todoList, onAddListItem } = props;
+  const {
+    todoList,
+    onAddListItem,
+    onToggleListItem,
+  } = props;
 
   return (
     <section className="todoapp">
       <TodoHeader
         onAddListItem={onAddListItem}
       />
-      <TodoList todoList={todoList} />
+      <TodoList
+        todoList={todoList}
+        onToggleListItem={onToggleListItem}
+      />
       <TodoFooter />
     </section>
   );

@@ -9,23 +9,41 @@ const propTypes = {
     id: PropTypes.string,
     status: PropTypes.string,
   }),
+  onToggleListItem: PropTypes.func,
 };
 const defaultProps = {
   item: {},
+  onToggleListItem() {},
 };
 
 class TodoListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleToggleListItem = this.handleToggleListItem.bind(this);
+  }
+
+  handleToggleListItem() {
+    const { item, onToggleListItem } = this.props;
+
+    onToggleListItem(item.id);
+  }
+
   render() {
     const { item } = this.props;
     const itemStatus = cx({
-      complete: item.status === STATUS.COMPLETE,
+      completed: item.status === STATUS.COMPLETE,
       editing: item.status === STATUS.EDIT,
     });
 
     return (
       <li className={itemStatus}>
         <div className="view">
-          <input type="checkbox" className="toggle" />
+          <input
+            type="checkbox"
+            checked={item.status === STATUS.COMPLETE}
+            className="toggle"
+            onClick={this.handleToggleListItem}
+          />
           <label>{item.value}</label>
           <button className="destroy" />
         </div>
