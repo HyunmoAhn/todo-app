@@ -12,6 +12,12 @@ export const idsSelector = (state) => {
   return todo.ids;
 };
 
+export const filterSelector = (state) => {
+  const todo = todoSelector(state);
+
+  return todo.filter;
+};
+
 export const getTodoList = (state) => {
   const byId = byIdSelector(state);
   const ids = idsSelector(state);

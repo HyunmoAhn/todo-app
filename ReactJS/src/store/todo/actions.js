@@ -43,3 +43,10 @@ export const editListItemValue = (id, value) => ({
     value,
   },
 });
+
+export const changeFilterStatus = filter => ({
+  type: TYPES.TODO_CHANGE_FILTER_STAUTS,
+  payload: {
+    filter,
+  },
+});
