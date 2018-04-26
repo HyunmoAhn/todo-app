@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
+  isAllCompleted: PropTypes.bool,
   onAddListItem: PropTypes.func,
+  onToggleAllListItem: PropTypes.func,
 };
 const defaultProps = {
+  isAllCompleted: false,
   onAddListItem() {},
+  onToggleAllListItem() {},
 };
 
 class TodoHeader extends React.Component {
@@ -40,6 +44,7 @@ class TodoHeader extends React.Component {
 
   render() {
     const { value } = this.state;
+    const { isAllCompleted } = this.props;
 
     return (
       <header className="header">
@@ -52,7 +57,14 @@ class TodoHeader extends React.Component {
           onChange={this.handleChange}
           onKeyPress={this.handleInputKeyPress}
         />
-        <input className="toggle-all" id="toggle-all" type="checkbox" />
+        <input
+          className="toggle-all"
+          id="toggle-all"
+          type="checkbox"
+          checked={isAllCompleted}
+          readOnly
+          onClick={this.props.onToggleAllListItem}
+        />
         <label style={{ top: '15px' }} htmlFor="toggle-all">Mark all async complete</label>
       </header>
     );
