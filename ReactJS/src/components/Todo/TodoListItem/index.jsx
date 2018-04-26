@@ -10,12 +10,14 @@ const propTypes = {
     status: PropTypes.string,
   }),
   onDeleteListItem: PropTypes.func,
+  onEditListItemValue: PropTypes.func,
   onEditToggleListItem: PropTypes.func,
   onToggleListItem: PropTypes.func,
 };
 const defaultProps = {
   item: {},
   onDeleteListItem() {},
+  onEditListItemValue() {},
   onEditToggleListItem() {},
   onToggleListItem() {},
 };
@@ -23,9 +25,16 @@ const defaultProps = {
 class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      value: props.item.value,
+    };
     this.handleDeleteListItem = this.handleDeleteListItem.bind(this);
+    this.handleEditListItemValue = this.handleEditListItemValue.bind(this);
     this.handleEditToggleListItem = this.handleEditToggleListItem.bind(this);
     this.handleToggleListItem = this.handleToggleListItem.bind(this);
+    this.handleChangeEditValue = this.handleChangeEditValue.bind(this);
+    this.handleKeyPressEscape = this.handleKeyPressEscape.bind(this);
+    this.handleCompleteItemEdit = this.handleCompleteItemEdit.bind(this);
   }
 
   handleToggleListItem() {
@@ -34,10 +43,34 @@ class TodoListItem extends React.Component {
     onToggleListItem(item.id);
   }
 
+  handleEditListItemValue() {
+    const { item, onEditListItemValue } = this.props;
+
+    onEditListItemValue(item.id, this.state.value);
+  }
+
+  handleChangeEditValue(e) {
+    this.setState({ value: e.target.value });
+  }
+
   handleEditToggleListItem() {
     const { item, onEditToggleListItem } = this.props;
 
     onEditToggleListItem(item.id);
+  }
+
+  handleKeyPressEscape(e) {
+    if (e.key === 'Escape') {
+      this.handleEditToggleListItem();
+      this.setState({ value: this.props.item.value });
+    } else if (e.key === 'Enter') {
+      this.handleCompleteItemEdit();
+    }
+  }
+
+  handleCompleteItemEdit() {
+    this.handleEditToggleListItem();
+    this.handleEditListItemValue();
   }
 
   handleDeleteListItem() {
@@ -46,12 +79,28 @@ class TodoListItem extends React.Component {
     onDeleteListItem(item.id);
   }
 
+
   render() {
     const { item } = this.props;
     const itemStatus = cx({
       completed: item.status === STATUS.COMPLETE,
-      editing: item.isEdit,
     });
+
+    if (item.isEdit) {
+      return (
+        <li className="editing">
+          <input
+            autoFocus // eslint-disable-line jsx-a11y/no-autofocus
+            type="text"
+            className="edit"
+            value={this.state.value}
+            onChange={this.handleChangeEditValue}
+            onKeyDown={this.handleKeyPressEscape}
+            onBlur={this.handleCompleteItemEdit}
+          />
+        </li>
+      );
+    }
 
     return (
       <li className={itemStatus}>
@@ -60,6 +109,7 @@ class TodoListItem extends React.Component {
             type="checkbox"
             checked={item.status === STATUS.COMPLETE}
             className="toggle"
+            readOnly
             onClick={this.handleToggleListItem}
           />
           <label
@@ -72,7 +122,6 @@ class TodoListItem extends React.Component {
             onClick={this.handleDeleteListItem}
           />
         </div>
-        <input type="text" className="edit" />
       </li>
     );
   }
