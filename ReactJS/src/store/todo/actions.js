@@ -45,8 +45,16 @@ export const editListItemValue = (id, value) => ({
 });
 
 export const changeFilterStatus = filter => ({
-  type: TYPES.TODO_CHANGE_FILTER_STAUTS,
+  type: TYPES.TODO_CHANGE_FILTER_STATUS,
   payload: {
     filter,
   },
+});
+
+export const toggleAllListItem = () => ({
+  type: TYPES.TODO_TOGGLE_ALL_LIST_ITEM,
+});
+
+export const deleteAllItemCompleted = () => ({
+  type: TYPES.TODO_DELETE_ALL_ITEM_COMPLETED,
 });

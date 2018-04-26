@@ -5,7 +5,7 @@ const initialState = extractFilterStatus();
 
 function statusReducer(state = initialState, actions) {
   switch (actions.type) {
-    case TYPES.TODO_CHANGE_FILTER_STAUTS: {
+    case TYPES.TODO_CHANGE_FILTER_STATUS: {
       return actions.payload.filter;
     }
     default: {

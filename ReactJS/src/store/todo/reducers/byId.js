@@ -65,6 +65,21 @@ function byIdReducer(state = initialState, actions) {
         [id]: item,
       });
     }
+    case TYPES.TODO_TOGGLE_ALL_LIST_ITEM: {
+      const nextState = Object.assign({}, state);
+
+      const completedNumber = Object.keys(nextState).filter(item =>
+        nextState[item].status === STATUS.COMPLETE).length;
+      const setComplete = completedNumber !== Object.keys(nextState).length;
+
+      Object.keys(nextState).forEach((item) => {
+        nextState[item] = Object.assign({}, nextState[item], {
+          status: setComplete ? STATUS.COMPLETE : STATUS.NORMAL,
+        });
+      });
+
+      return nextState;
+    }
     default: {
       return state;
     }

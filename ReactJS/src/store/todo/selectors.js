@@ -1,3 +1,5 @@
+import * as STATUS from 'constants/status';
+
 export const todoSelector = state => state.todo;
 
 export const byIdSelector = (state) => {
@@ -32,4 +34,27 @@ export const getTodoList = (state) => {
       value: info.value,
     };
   });
+};
+
+export const getNumberOfCompletedItem = (state) => {
+  const byId = byIdSelector(state);
+
+  return Object.keys(byId).filter(item =>
+    byId[item].status === STATUS.COMPLETE).length;
+};
+
+export const getNumberOfActiveItem = (state) => {
+  const byId = byIdSelector(state);
+
+  return Object.keys(byId).filter(item =>
+    byId[item].status === STATUS.NORMAL).length;
+};
+
+export const getIsAllCompleted = (state) => {
+  const byId = byIdSelector(state);
+  const numberOfCompleted = getNumberOfCompletedItem(state);
+
+  const numberOfAll = Object.keys(byId).length;
+
+  return numberOfAll === numberOfCompleted;
 };
