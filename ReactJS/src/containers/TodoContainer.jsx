@@ -6,15 +6,20 @@ import {
   deleteListItem,
   editListItemValue,
   editToggleListItem,
+  toggleAllListItem,
   toggleListItem,
 } from 'store/todo/actions';
 import {
   filterSelector,
+  getNumberOfActiveItem,
   getTodoList,
+  getIsAllCompleted,
 } from 'store/todo/selectors';
 
 const mapStateToProps = state => ({
   filter: filterSelector(state),
+  isAllCompleted: getIsAllCompleted(state),
+  numberOfActiveItem: getNumberOfActiveItem(state),
   todoList: getTodoList(state),
 });
 
@@ -24,6 +29,7 @@ const mapDispatchToProps = dispatch => ({
   onDeleteListItem: id => dispatch(deleteListItem(id)),
   onEditListItemValue: (id, value) => dispatch(editListItemValue(id, value)),
   onEditToggleListItem: id => dispatch(editToggleListItem(id)),
+  onToggleAllListItem: () => dispatch(toggleAllListItem()),
   onToggleListItem: id => dispatch(toggleListItem(id)),
 });
 

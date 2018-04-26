@@ -7,6 +7,8 @@ import TodoList from './TodoList';
 
 const propTypes = {
   filter: PropTypes.string,
+  isAllCompleted: PropTypes.bool,
+  numberOfActiveItem: PropTypes.number,
   todoList: PropTypes.arrayOf(
     PropTypes.shape({
       status: PropTypes.string,
@@ -19,17 +21,21 @@ const propTypes = {
   onEditListItemValue: PropTypes.func,
   onEditToggleListItem: PropTypes.func,
   onDeleteListItem: PropTypes.func,
+  onToggleAllListItem: PropTypes.func,
   onToggleListItem: PropTypes.func,
 };
 
 const defaultProps = {
   filter: 'all',
+  isAllCompleted: false,
+  numberOfActiveItem: 0,
   todoList: [],
   onAddListItem() {},
   onChangeFilterStatus() {},
   onEditListItemValue() {},
   onEditToggleListItem() {},
   onDeleteListItem() {},
+  onToggleAllListItem() {},
   onToggleListItem() {},
 };
 
@@ -56,18 +62,23 @@ class Todo extends React.Component {
   render() {
     const {
       filter,
+      isAllCompleted,
+      numberOfActiveItem,
       todoList,
       onAddListItem,
       onEditListItemValue,
       onEditToggleListItem,
       onDeleteListItem,
+      onToggleAllListItem,
       onToggleListItem,
     } = this.props;
 
     return (
       <section className="todoapp">
         <TodoHeader
+          isAllCompleted={isAllCompleted}
           onAddListItem={onAddListItem}
+          onToggleAllListItem={onToggleAllListItem}
         />
         <TodoList
           todoList={todoList}
@@ -76,7 +87,10 @@ class Todo extends React.Component {
           onDeleteListItem={onDeleteListItem}
           onToggleListItem={onToggleListItem}
         />
-        <TodoFooter filter={filter} />
+        <TodoFooter
+          filter={filter}
+          numberOfActiveItem={numberOfActiveItem}
+        />
       </section>
     );
   }

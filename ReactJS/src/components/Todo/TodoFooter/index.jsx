@@ -4,21 +4,23 @@ import cx from 'classnames';
 
 const propTypes = {
   filter: PropTypes.string,
+  numberOfActiveItem: PropTypes.number,
 };
 const defaultProps = {
   filter: 'all',
+  numberOfActiveItem: 0,
 };
 
 class TodoFooter extends React.Component {
   render() {
-    const { filter } = this.props;
+    const { filter, numberOfActiveItem } = this.props;
     const allClassName = cx({ selected: filter === 'all' });
     const activeClassName = cx({ selected: filter === 'active' });
     const completedClassName = cx({ selected: filter === 'completed' });
 
     return (
       <footer className="footer" style={{ display: 'block' }}>
-        <span className="todo-count"><strong>1</strong> item left</span>
+        <span className="todo-count"><strong>{numberOfActiveItem}</strong> item left</span>
         <ul className="filters">
           <li><a href="#/" className={allClassName}>All</a></li>
           <li><a href="#/active" className={activeClassName}>Active</a></li>
