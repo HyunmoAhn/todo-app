@@ -12,7 +12,7 @@ import {
 import {
   filterSelector,
   getNumberOfActiveItem,
-  getTodoList,
+  getTodoListWithFilter,
   getIsAllCompleted,
 } from 'store/todo/selectors';
 
@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
   filter: filterSelector(state),
   isAllCompleted: getIsAllCompleted(state),
   numberOfActiveItem: getNumberOfActiveItem(state),
-  todoList: getTodoList(state),
+  todoList: getTodoListWithFilter(state),
 });
 
 const mapDispatchToProps = dispatch => ({
