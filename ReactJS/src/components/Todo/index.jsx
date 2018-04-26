@@ -13,6 +13,7 @@ const propTypes = {
     }),
   ),
   onAddListItem: PropTypes.func,
+  onEditToggleListItem: PropTypes.func,
   onDeleteListItem: PropTypes.func,
   onToggleListItem: PropTypes.func,
 };
@@ -20,6 +21,7 @@ const propTypes = {
 const defaultProps = {
   todoList: [],
   onAddListItem() {},
+  onEditToggleListItem() {},
   onDeleteListItem() {},
   onToggleListItem() {},
 };
@@ -28,6 +30,7 @@ function Todo(props) {
   const {
     todoList,
     onAddListItem,
+    onEditToggleListItem,
     onDeleteListItem,
     onToggleListItem,
   } = props;
@@ -39,6 +42,7 @@ function Todo(props) {
       />
       <TodoList
         todoList={todoList}
+        onEditToggleListItem={onEditToggleListItem}
         onDeleteListItem={onDeleteListItem}
         onToggleListItem={onToggleListItem}
       />

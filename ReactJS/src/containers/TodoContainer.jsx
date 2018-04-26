@@ -3,6 +3,7 @@ import Todo from 'components/Todo';
 import {
   addListItem,
   deleteListItem,
+  editToggleListItem,
   toggleListItem,
 } from 'store/todo/actions';
 import { getTodoList } from 'store/todo/selectors';
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onAddListItem: value => dispatch(addListItem(value)),
   onDeleteListItem: id => dispatch(deleteListItem(id)),
+  onEditToggleListItem: id => dispatch(editToggleListItem(id)),
   onToggleListItem: id => dispatch(toggleListItem(id)),
 });
 

@@ -10,19 +10,22 @@ const propTypes = {
     status: PropTypes.string,
   }),
   onDeleteListItem: PropTypes.func,
+  onEditToggleListItem: PropTypes.func,
   onToggleListItem: PropTypes.func,
 };
 const defaultProps = {
   item: {},
   onDeleteListItem() {},
+  onEditToggleListItem() {},
   onToggleListItem() {},
 };
 
 class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.handleToggleListItem = this.handleToggleListItem.bind(this);
     this.handleDeleteListItem = this.handleDeleteListItem.bind(this);
+    this.handleEditToggleListItem = this.handleEditToggleListItem.bind(this);
+    this.handleToggleListItem = this.handleToggleListItem.bind(this);
   }
 
   handleToggleListItem() {
@@ -31,18 +34,23 @@ class TodoListItem extends React.Component {
     onToggleListItem(item.id);
   }
 
+  handleEditToggleListItem() {
+    const { item, onEditToggleListItem } = this.props;
+
+    onEditToggleListItem(item.id);
+  }
+
   handleDeleteListItem() {
     const { item, onDeleteListItem } = this.props;
 
     onDeleteListItem(item.id);
   }
 
-
   render() {
     const { item } = this.props;
     const itemStatus = cx({
       completed: item.status === STATUS.COMPLETE,
-      editing: item.status === STATUS.EDIT,
+      editing: item.isEdit,
     });
 
     return (
@@ -54,7 +62,11 @@ class TodoListItem extends React.Component {
             className="toggle"
             onClick={this.handleToggleListItem}
           />
-          <label>{item.value}</label>
+          <label
+            onDoubleClick={this.handleEditToggleListItem}
+          >
+            {item.value}
+          </label>
           <button
             className="destroy"
             onClick={this.handleDeleteListItem}
