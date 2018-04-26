@@ -8,6 +8,7 @@ export const addListItem = value => ({
   payload: {
     createTime: moment().toISOString(),
     id: v4(),
+    isEdit: false,
     status: STATUS.NORMAL,
     updateTime: moment().toISOString(),
     value,
@@ -23,6 +24,13 @@ export const deleteListItem = id => ({
 
 export const toggleListItem = id => ({
   type: TYPES.TODO_TOGGLE_LIST_ITEM,
+  payload: {
+    id,
+  },
+});
+
+export const editToggleListItem = id => ({
+  type: TYPES.TODO_EDIT_TOGGLE_LIST_ITEM,
   payload: {
     id,
   },

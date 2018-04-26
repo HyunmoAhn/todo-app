@@ -9,6 +9,7 @@ function byIdReducer(state = initialState, actions) {
       const {
         createTime,
         id,
+        isEdit,
         status,
         updateTime,
         value,
@@ -18,6 +19,7 @@ function byIdReducer(state = initialState, actions) {
       nextState[id] = {
         createTime,
         id,
+        isEdit,
         updateTime,
         status,
         value,
@@ -37,6 +39,16 @@ function byIdReducer(state = initialState, actions) {
       const item = Object.assign({}, state[id], {
         status: state[id].status === STATUS.NORMAL
           ? STATUS.COMPLETE : STATUS.NORMAL,
+      });
+
+      return Object.assign({}, state, {
+        [id]: item,
+      });
+    }
+    case TYPES.TODO_EDIT_TOGGLE_LIST_ITEM: {
+      const { id } = actions.payload;
+      const item = Object.assign({}, state[id], {
+        isEdit: !state[id].isEdit,
       });
 
       return Object.assign({}, state, {
