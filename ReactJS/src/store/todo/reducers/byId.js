@@ -55,6 +55,16 @@ function byIdReducer(state = initialState, actions) {
         [id]: item,
       });
     }
+    case TYPES.TODO_EDIT_LIST_ITEM_VALUE: {
+      const { id, value } = actions.payload;
+      const item = Object.assign({}, state[id], {
+        value,
+      });
+
+      return Object.assign({}, state, {
+        [id]: item,
+      });
+    }
     default: {
       return state;
     }

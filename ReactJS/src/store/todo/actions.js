@@ -35,3 +35,11 @@ export const editToggleListItem = id => ({
     id,
   },
 });
+
+export const editListItemValue = (id, value) => ({
+  type: TYPES.TODO_EDIT_LIST_ITEM_VALUE,
+  payload: {
+    id,
+    value,
+  },
+});
