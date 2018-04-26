@@ -36,6 +36,19 @@ export const getTodoList = (state) => {
   });
 };
 
+export const getTodoListWithFilter = (state) => {
+  const list = getTodoList(state);
+  const filter = filterSelector(state);
+
+  if (filter === 'completed') {
+    return list.filter(item => item.status === STATUS.COMPLETE);
+  } else if (filter === 'active') {
+    return list.filter(item => item.status === STATUS.NORMAL);
+  }
+
+  return list;
+};
+
 export const getNumberOfCompletedItem = (state) => {
   const byId = byIdSelector(state);
 
