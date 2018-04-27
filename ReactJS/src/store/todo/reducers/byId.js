@@ -1,7 +1,7 @@
 import * as TYPES from 'store/actionTypes';
 import * as STATUS from 'constants/status';
 
-const initialState = {};
+const initialState = JSON.parse(localStorage.getItem('byId')) || {};
 
 function byIdReducer(state = initialState, actions) {
   switch (actions.type) {
@@ -25,6 +25,7 @@ function byIdReducer(state = initialState, actions) {
         value,
       };
 
+      localStorage.setItem('byId', JSON.stringify(nextState));
       return nextState;
     }
     case TYPES.TODO_DELETE_LIST_ITEM: {
@@ -40,30 +41,36 @@ function byIdReducer(state = initialState, actions) {
         status: state[id].status === STATUS.NORMAL
           ? STATUS.COMPLETE : STATUS.NORMAL,
       });
-
-      return Object.assign({}, state, {
+      const nextState = Object.assign({}, state, {
         [id]: item,
       });
+
+      localStorage.setItem('byId', JSON.stringify(nextState));
+      return nextState;
     }
     case TYPES.TODO_EDIT_TOGGLE_LIST_ITEM: {
       const { id } = actions.payload;
       const item = Object.assign({}, state[id], {
         isEdit: !state[id].isEdit,
       });
-
-      return Object.assign({}, state, {
+      const nextState = Object.assign({}, state, {
         [id]: item,
       });
+
+      localStorage.setItem('byId', JSON.stringify(nextState));
+      return nextState;
     }
     case TYPES.TODO_EDIT_LIST_ITEM_VALUE: {
       const { id, value } = actions.payload;
       const item = Object.assign({}, state[id], {
         value,
       });
-
-      return Object.assign({}, state, {
+      const nextState = Object.assign({}, state, {
         [id]: item,
       });
+
+      localStorage.setItem('byId', JSON.stringify(nextState));
+      return nextState;
     }
     case TYPES.TODO_TOGGLE_ALL_LIST_ITEM: {
       const nextState = Object.assign({}, state);
@@ -78,6 +85,7 @@ function byIdReducer(state = initialState, actions) {
         });
       });
 
+      localStorage.setItem('byId', JSON.stringify(nextState));
       return nextState;
     }
     case TYPES.TODO_CLEAR_COMPLETED_ITEMS: {
@@ -86,6 +94,7 @@ function byIdReducer(state = initialState, actions) {
 
       items.forEach(item => delete nextState[item]);
 
+      localStorage.setItem('byId', JSON.stringify(nextState));
       return nextState;
     }
     default: {
