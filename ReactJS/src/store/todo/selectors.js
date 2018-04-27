@@ -49,6 +49,13 @@ export const getTodoListWithFilter = (state) => {
   return list;
 };
 
+export const getTodoListCompletedIds = (state) => {
+  const ids = idsSelector(state);
+  const byId = byIdSelector(state);
+
+  return ids.filter(id => byId[id].status === STATUS.COMPLETE);
+};
+
 export const getNumberOfCompletedItem = (state) => {
   const byId = byIdSelector(state);
 

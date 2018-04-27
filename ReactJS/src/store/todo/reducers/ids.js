@@ -15,6 +15,14 @@ function idsReducer(state = initialState, actions) {
 
       return state.filter(item => item !== id);
     }
+    case TYPES.TODO_CLEAR_COMPLETED_ITEMS: {
+      const nextState = state.slice();
+      const { items } = actions.payload;
+
+      items.forEach(item => nextState.splice(nextState.indexOf(item), 1));
+
+      return nextState;
+    }
     default: {
       return state;
     }

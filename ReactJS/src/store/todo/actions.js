@@ -55,6 +55,9 @@ export const toggleAllListItem = () => ({
   type: TYPES.TODO_TOGGLE_ALL_LIST_ITEM,
 });
 
-export const deleteAllItemCompleted = () => ({
-  type: TYPES.TODO_DELETE_ALL_ITEM_COMPLETED,
+export const clearCompletedItems = items => ({
+  type: TYPES.TODO_CLEAR_COMPLETED_ITEMS,
+  payload: {
+    items,
+  },
 });
