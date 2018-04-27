@@ -69,5 +69,5 @@ export const getIsAllCompleted = (state) => {
 
   const numberOfAll = Object.keys(byId).length;
 
-  return numberOfAll === numberOfCompleted;
+  return numberOfAll === numberOfCompleted && numberOfAll !== 0;
 };
