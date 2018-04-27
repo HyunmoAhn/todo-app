@@ -1,15 +1,19 @@
 # TodoMVC using VanillaJS
 
-- Using Only Vanilla JS (mixed ES5 and ES6)
-  - Because understand Javascript Grammar
-
+- TodoMVC web application using react & redux
+- Use Pure redux([redux](https://github.com/reactjs/redux) + [react-redux](https://github.com/reactjs/react-redux))
+  - Because understand basic redux concept.
 ![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
 
-[Demo site](http://demo.hyunmos.me/todo-vanilla/)
+[Demo site](http://demo.hyunmos.me/todo-react/)
 
-## Doing
+## Stack
 
-- Javascript(ES5 & ES6)
+- [React](https://reactjs.org/)(v16.3.2)
+- [Redux](https://github.com/reactjs/reduxs)(v4)
+- [React-Redux](https://github.com/reactjs/react-redux)(v5.0.7)
+- [webpack](https://webpack.js.org/)(v4.5)
+
 
 ## Flow language of korean
 
