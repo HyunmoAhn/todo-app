@@ -80,6 +80,14 @@ function byIdReducer(state = initialState, actions) {
 
       return nextState;
     }
+    case TYPES.TODO_CLEAR_COMPLETED_ITEMS: {
+      const nextState = Object.assign({}, state);
+      const { items } = actions.payload;
+
+      items.forEach(item => delete nextState[item]);
+
+      return nextState;
+    }
     default: {
       return state;
     }
