@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoHeader /> should match to snapshot when render default 1`] = `
+<header
+  className="header"
+>
+  <h1>
+    todos
+  </h1>
+  <input
+    className="new-todo"
+    onChange={[Function]}
+    onKeyPress={[Function]}
+    placeholder="What needs to be done?"
+    type="text"
+    value=""
+  />
+  <input
+    checked={false}
+    className="toggle-all"
+    id="toggle-all"
+    onClick={[Function]}
+    readOnly={true}
+    type="checkbox"
+  />
+  <label
+    htmlFor="toggle-all"
+    style={
+      Object {
+        "top": "15px",
+      }
+    }
+  >
+    Mark all async complete
+  </label>
+</header>
+`;
