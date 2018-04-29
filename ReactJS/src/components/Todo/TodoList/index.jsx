@@ -16,7 +16,7 @@ const propTypes = {
   onToggleListItem: PropTypes.func,
 };
 const defaultProps = {
-  todoList: {},
+  todoList: [],
   onDeleteListItem() {},
   onEditListItemValue() {},
   onEditToggleListItem() {},
