@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoListItem /> should match to snapshot when item.isEdit === true 1`] = `
+<li
+  className="editing"
+>
+  <input
+    autoFocus={true}
+    className="edit"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+  />
+</li>
+`;
+
+exports[`<TodoListItem /> should match to snapshot when render default 1`] = `
+<li
+  className=""
+>
+  <div
+    className="view"
+  >
+    <input
+      checked={false}
+      className="toggle"
+      onClick={[Function]}
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      onDoubleClick={[Function]}
+    />
+    <button
+      className="destroy"
+      onClick={[Function]}
+    />
+  </div>
+</li>
+`;
