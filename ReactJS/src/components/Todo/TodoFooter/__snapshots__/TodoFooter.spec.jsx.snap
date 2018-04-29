@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoFooter /> should match to snapshot when render default 1`] = `
+<footer
+  className="footer"
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <span
+    className="todo-count"
+  >
+    <strong>
+      0
+    </strong>
+     item left
+  </span>
+  <ul
+    className="filters"
+  >
+    <li>
+      <a
+        className="selected"
+        href="#/"
+      >
+        All
+      </a>
+    </li>
+    <li>
+      <a
+        className=""
+        href="#/active"
+      >
+        Active
+      </a>
+    </li>
+    <li>
+      <a
+        className=""
+        href="#/completed"
+      >
+        Completed
+      </a>
+    </li>
+  </ul>
+  <button
+    className="clear-completed"
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "block",
+      }
+    }
+  >
+    Clear completed
+  </button>
+</footer>
+`;
