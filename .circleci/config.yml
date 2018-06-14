@@ -1,0 +1,30 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/todo-app
+    docker:
+    - image: circleci/node:8.12.0
+    environment:
+      TZ: "/usr/share/zoneinfo/Asia/Seoul"
+    steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    - run:
+        name: Install Dependency
+        command: yarn install
+    - run:
+        name: Add now
+        command: yarn global add now
+    - save_cache:
+        key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        paths:
+        - ./node_modules
+        - ~/.yarn-cache
+    - run:
+        name: build
+        command: yarn build:react
+    - run:
+        name: release
+        command: yarn package:react

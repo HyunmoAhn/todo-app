@@ -5149,6 +5149,11 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
+now@^13.1.2:
+  version "13.1.2"
+  resolved "https://registry.yarnpkg.com/now/-/now-13.1.2.tgz#dda24eb622edeedc43e694d31d9c81f2154896c4"
+  integrity sha512-v6K4141Zcw/EsEC88uQ8DusP5LnbLIYFEblpH9BiQXCx4s4qmk56xxT7AXRCFBMtUFTX0hF8Bd2rqWGs0HzjAQ==
+
 npm-path@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/npm-path/-/npm-path-2.0.4.tgz#c641347a5ff9d6a09e4d9bce5580c4f505278e64"

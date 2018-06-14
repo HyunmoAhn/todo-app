@@ -15,11 +15,13 @@
     "lint:react": "eslint -c ./ReactJS/.eslintrc ReactJS/src --ignore-path ./ReactJS/.eslintignore --ext .js,.jsx",
     "lint-staged:react": "lint-staged -c ./ReactJS/.lintstagedrc",
     "precommit": "yarn lint-staged:react",
-    "prepush": "yarn lint"
+    "prepush": "yarn lint",
+    "package:react": "now -t IMxJOGrx50zFJEBKdNqubMb0 && now -t IMxJOGrx50zFJEBKdNqubMb0 alias mos-todo"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "moment": "^2.22.1",
+    "now": "^13.1.2",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
