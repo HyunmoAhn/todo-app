@@ -1,8 +1,19 @@
 # TodoMVC
 
 ![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
+[DEMO](http://demo.hyunmos.me/todo-vanilla/)
 
-## Flow language of korean
+## Basic Feature
+
+- **C**reate list
+- **U**pdate list
+- **D**elete list
+- Toggle list status when click
+- Save list when page is refreshed
+- Filter by hash url
+- Clear button about cleaning completed list
+
+## Detail Basic Feature
 
 1. 할 일을 입력하고 `Enter`를 입력하면 리스트에 추가된다.
    - 아무런 입력값이 없을 경우 할 일이 추가되지 않는다.
@@ -21,3 +32,7 @@
 1. `Clear completed`를 누를 경우 완료된 모든 할 일을 삭제한다.
 1. 새로고침시 추가되어 있는 모든 할 일이 유지된다.
    - URL에 따라 초기 필터링이 결정된다.
+
+## Optional Feature
+
+- Redo / Undo
