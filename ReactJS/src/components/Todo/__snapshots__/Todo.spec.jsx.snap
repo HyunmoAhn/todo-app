@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Todo /> should match to snapshot when render default 1`] = `
+<section
+  className="todoapp"
+>
+  <TodoHeader
+    isAllCompleted={false}
+    onAddListItem={[Function]}
+    onToggleAllListItem={[Function]}
+  />
+  <TodoList
+    onDeleteListItem={[Function]}
+    onEditListItemValue={[Function]}
+    onEditToggleListItem={[Function]}
+    onToggleListItem={[Function]}
+    todoList={Array []}
+  />
+  <TodoFooter
+    completedIds={Array []}
+    filter="all"
+    numberOfActiveItem={0}
+    onClearCompletedItems={[Function]}
+  />
+</section>
+`;
