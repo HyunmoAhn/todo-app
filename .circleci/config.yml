@@ -16,7 +16,7 @@ jobs:
         command: yarn install
     - run:
         name: Add now
-        command: yarn global add now
+        command: yarn add now
     - save_cache:
         key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
         paths:
@@ -27,7 +27,7 @@ jobs:
         command: yarn build:react
     - run:
         name: release
-        command: now -t IMxJOGrx50zFJEBKdNqubMb0
+        command: now -t ${NOW_TOKEN}
     - run:
         name: release alias
-        command: now -t IMxJOGrx50zFJEBKdNqubMb0 alias mos-todo
+        command: now -t ${NOW_TOKEN} alias mos-todo
