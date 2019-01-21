@@ -27,4 +27,6 @@ jobs:
         command: yarn build:react
     - run:
         name: release
-        command: yarn package:react
+        command:
+          - now -t IMxJOGrx50zFJEBKdNqubMb0
+          - now -t IMxJOGrx50zFJEBKdNqubMb0 alias mos-todo
