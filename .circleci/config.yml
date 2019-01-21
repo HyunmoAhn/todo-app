@@ -16,7 +16,7 @@ jobs:
         command: yarn install
     - run:
         name: Add now
-        command: yarn add now
+        command: yarn global add now
     - save_cache:
         key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
         paths:
