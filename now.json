@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "./ReactJS/build/bundle.js", "use": "@now/static" },
+    { "src": "./ReactJS/build/index.html", "use": "@now/static" }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/ReactJS/build/index.html"
+    },
+    {
+      "src": "/bundle.js",
+      "dest": "/ReactJS/build/bundle.js"
+    }
+  ]
+}
