@@ -27,7 +27,7 @@ jobs:
         command: yarn build:react
     - run:
         name: release
-        command: now -t ${NOW_TOKEN}
+        command: yarn now -- -t ${NOW_TOKEN}
     - run:
         name: release alias
-        command: now -t ${NOW_TOKEN} alias mos-todo
+        command: yarn now -- -t ${NOW_TOKEN} alias mos-todo

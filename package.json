@@ -16,7 +16,7 @@
     "lint-staged:react": "lint-staged -c ./ReactJS/.lintstagedrc",
     "precommit": "yarn lint-staged:react",
     "prepush": "yarn lint",
-    "package:react": "now -t IMxJOGrx50zFJEBKdNqubMb0 && now -t IMxJOGrx50zFJEBKdNqubMb0 alias mos-todo"
+    "now": "now"
   },
   "dependencies": {
     "classnames": "^2.2.5",
