@@ -1,6 +1,6 @@
 # TodoMVC
 
-![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
+![image](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
 [DEMO](http://demo.hyunmos.me/todo-vanilla/)
 
 ## Basic Feature
