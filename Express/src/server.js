@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const TodoRoutes = require('./route/todo');
 
 const app = express();
 
@@ -7,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Router
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use('/todo', TodoRoutes);
 
 // Error Handler
 app.use(function (err, req, res, next) {

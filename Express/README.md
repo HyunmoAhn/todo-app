@@ -14,7 +14,7 @@ body: {
 
 ### Edit Todo Value
 ```
-api: /todo/edit/value
+api: /todo/edit
 method: post
 body: {
   id: String,
@@ -24,7 +24,7 @@ body: {
 
 ### Edit Todo isComplete
 ```
-api: /todo/edit/complete
+api: /todo/edit
 method: post
 body: {
   id: Array(String) || String,
@@ -42,11 +42,11 @@ body: {
 ```
 
 
-### Read Todo list
+### Read Todo list 
 ```
 api: /todo
 method: get
 body: {
-  isComplete: Bool,
+  isComplete: Bool || undefined,
 }
 ```

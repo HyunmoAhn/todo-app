@@ -11,12 +11,6 @@
     "start:react": "webpack-dev-server --hot --inline --config ./ReactJS/webpack.config.js",
     "build:vanilla": "webpack --mode production --config ./VanillaJS/webpack.config.js",
     "build:react": "webpack --mode production --config ./ReactJS/webpack.config.js",
-    "lint": "yarn lint:react",
-    "lint:react": "eslint -c ./ReactJS/.eslintrc ReactJS/src --ignore-path ./ReactJS/.eslintignore --ext .js,.jsx",
-    "lint-staged:react": "lint-staged -c ./ReactJS/.lintstagedrc",
-    "precommit": "yarn lint-staged:react",
-    "prepush": "yarn lint",
-    "now": "now"
   },
   "dependencies": {
     "classnames": "^2.2.5",
