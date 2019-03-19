@@ -1,7 +1,7 @@
 <template>
   <section class="main">
-    <input class="toggle-all" id="toggle-all" type="checkbox" />
-    <label htmlFor="toggle-all">Mark all async complete</label>
+    <input class="toggle-all" id="toggle-all" type="checkbox" :checked="isAllCompleted" />
+    <label htmlFor="toggle-all" @click="checkAll">Mark all async complete</label>
     <ul class="todo-list">
       <todo-item
         v-for="item in todos"
@@ -20,6 +20,8 @@ import TodoItem from './TodoItem.vue';
 export default {
   props: {
     todos: Array,
+    isAllCompleted: Boolean,
+    checkAll: Function,
     updateTodo: Function,
     deleteTodo: Function,
     toggleComplete: Function,
