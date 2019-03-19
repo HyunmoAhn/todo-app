@@ -2,7 +2,12 @@
   <div id="app">
     <section class="todoapp">
       <todo-header :addTodo="addTodo"></todo-header>
-      <todo-content></todo-content>
+      <todo-content
+        :todos="todos"
+        :updateTodo="updateTodo"
+        :deleteTodo="deleteTodo"
+        :toggleComplete="toggleComplete"
+      />
       <todo-footer></todo-footer>
     </section>
   </div>
@@ -23,11 +28,28 @@ export default {
   },
   methods: {
     addTodo(newTodo) {
-      this.todos.push({
-        id: v4(),
-        content: newTodo,
-        isCompleted: false,
-      });
+      if (newTodo.length > 0) {
+        this.todos.push({
+          id: v4(),
+          content: newTodo,
+          isCompleted: false,
+        });
+      }
+    },
+    toggleComplete(id) {
+      const targetIndex = this.todos.findIndex(target => target.id === id);
+      const target = this.todos[targetIndex];
+
+      this.todos.splice(targetIndex, 1, { ...target, isCompleted: !target.isCompleted });
+    },
+    updateTodo(id, newContent) {
+      const targetIndex = this.todos.findIndex(target => target.id === id);
+      const target = this.todos[targetIndex];
+
+      this.todos.splice(targetIndex, 1, { ...target, content: newContent });
+    },
+    deleteTodo(id) {
+      this.todos = this.todos.filter(target => target.id !== id);
     },
   },
   components: {
@@ -37,14 +59,3 @@ export default {
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

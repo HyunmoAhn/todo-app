@@ -1,12 +1,12 @@
 <template>
-  <footer class="footer" style="{ display: 'block' }">
+  <footer class="footer">
     <span class="todo-count"><strong>1</strong> item left</span>
     <ul class="filters">
       <li><a href="#/" class="selected">All</a></li>
       <li><a href="#/active">Active</a></li>
       <li><a href="#/completed">Completed</a></li>
     </ul>
-    <button class="clear-completed" style="{ display: 'block' }">
+    <button class="clear-completed">
       Clear completed
     </button>
   </footer>

@@ -3,28 +3,29 @@
     <input class="toggle-all" id="toggle-all" type="checkbox" />
     <label htmlFor="toggle-all">Mark all async complete</label>
     <ul class="todo-list">
-      <li>
-        <div class="view">
-          <input type="checkbox" class="toggle" />
-          <label>value</label>
-          <button class="destroy" />
-        </div>
-      </li>
-      <li class="completed">
-        <div class="view">
-          <input type="checkbox" class="toggle" />
-          <label>value2</label>
-          <button class="destroy" />
-        </div>
-      </li>
-      <li class="editing">
-        <div class="view">
-          <input type="checkbox" class="toggle" />
-          <label>value2</label>
-          <button class="destroy" />
-        </div>
-        <input type="text" class="edit" />
-      </li>
+      <todo-item
+        v-for="item in todos"
+        :item="item"
+        :key="item.id"
+        :updateTodo="updateTodo"
+        :deleteTodo="deleteTodo"
+        :toggleComplete="toggleComplete"
+      />
     </ul>
   </section>
 </template>
+<script>
+import TodoItem from './TodoItem.vue';
+
+export default {
+  props: {
+    todos: Array,
+    updateTodo: Function,
+    deleteTodo: Function,
+    toggleComplete: Function,
+  },
+  components: {
+    TodoItem,
+  },
+};
+</script>
