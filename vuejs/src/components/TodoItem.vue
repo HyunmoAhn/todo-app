@@ -4,7 +4,7 @@
     v-if="!isEdit"
   >
     <div class="view">
-      <input type="checkbox" class="toggle" @click="toggleComplete(item.id)" />
+      <input type="checkbox" class="toggle" :checked="item.isCompleted" @click="toggleComplete(item.id)" />
       <label @dblclick="toggleEdit">{{ item.content }}</label>
       <button class="destroy" type="button" @click="deleteTodo(item.id)" />
     </div>
