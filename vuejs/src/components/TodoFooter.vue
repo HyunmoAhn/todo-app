@@ -12,7 +12,7 @@
   </footer>
 </template>
 <script>
-  export default {
-    name: 'todo-footer',
-  }
+export default {
+  name: 'todo-footer',
+};
 </script>
