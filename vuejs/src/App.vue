@@ -5,7 +5,7 @@
         :addTodo="addTodo"
       />
       <todo-content
-        :todos="todos"
+        :todos="filteredTodos"
         :isAllCompleted="isAllCompleted"
         :checkAll="checkAll"
         :updateTodo="updateTodo"
@@ -13,6 +13,7 @@
         :toggleComplete="toggleComplete"
       />
       <todo-footer
+        :filter="filter"
         :length="todoLength"
         :deleteCompleted="deleteCompleted"
       />
@@ -33,9 +34,21 @@ export default {
   data() {
     return {
       todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || [],
+      filter: 'all',
     };
   },
+  created() {
+    window.addEventListener('hashchange', this.getFilterStatue);
+  },
+  destroyed() {
+    window.removeEventListener('hashchange', this.getFilterStatue);
+  },
   computed: {
+    filteredTodos() {
+      if (this.filter === 'completed') return this.todos.filter(todo => todo.isCompleted === true);
+      if (this.filter === 'active') return this.todos.filter(todo => todo.isCompleted === false);
+      return this.todos;
+    },
     todoLength() {
       return this.todos.filter(todo => todo.isCompleted === false).length;
     },
@@ -51,6 +64,18 @@ export default {
           content: newTodo,
           isCompleted: false,
         });
+      }
+    },
+    getFilterStatue() {
+      switch (window.location.hash) {
+        case '#/completed':
+          this.filter = 'completed';
+          break;
+        case '#/active':
+          this.filter = 'active';
+          break;
+        default:
+          this.filter = 'all';
       }
     },
     toggleComplete(id) {
