@@ -11,6 +11,10 @@
   </header>
 </template>
 <script>
+import { mapMutations } from 'vuex';
+import { v4 } from 'uuid';
+import * as mutations from '@/store/mutations';
+
 export default {
   data() {
     return {
@@ -18,13 +22,15 @@ export default {
     };
   },
   methods: {
+    ...mapMutations([
+      mutations.ADD_TODO,
+    ]),
     addProcess() {
-      this.addTodo(this.value);
-      this.value = '';
+      if (this.value) {
+        this[mutations.ADD_TODO]({ id: v4(), content: this.value });
+        this.value = '';
+      }
     },
-  },
-  props: {
-    addTodo: Function,
   },
 };
 </script>

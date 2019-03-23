@@ -1,11 +1,8 @@
 <template>
   <div id="app">
     <section class="todoapp">
-      <todo-header
-        :addTodo="addTodo"
-      />
+      <todo-header />
       <todo-content
-        :todos="filteredTodos"
         :isAllCompleted="isAllCompleted"
         :checkAll="checkAll"
         :updateTodo="updateTodo"
@@ -22,7 +19,9 @@
 </template>
 
 <script>
-import { v4 } from 'uuid';
+import { mapMutations } from 'vuex';
+import * as mutations from '@/store/mutations';
+import getFilter from '@/utils/getFilter';
 import TodoHeader from './components/TodoHeader.vue';
 import TodoContent from './components/TodoContent.vue';
 import TodoFooter from './components/TodoFooter.vue';
@@ -38,17 +37,12 @@ export default {
     };
   },
   created() {
-    window.addEventListener('hashchange', this.getFilterStatue);
+    window.addEventListener('hashchange', this.changeFilter);
   },
   destroyed() {
-    window.removeEventListener('hashchange', this.getFilterStatue);
+    window.removeEventListener('hashchange', this.changeFilter);
   },
   computed: {
-    filteredTodos() {
-      if (this.filter === 'completed') return this.todos.filter(todo => todo.isCompleted === true);
-      if (this.filter === 'active') return this.todos.filter(todo => todo.isCompleted === false);
-      return this.todos;
-    },
     todoLength() {
       return this.todos.filter(todo => todo.isCompleted === false).length;
     },
@@ -57,26 +51,11 @@ export default {
     },
   },
   methods: {
-    addTodo(newTodo) {
-      if (newTodo.length > 0) {
-        this.todos.push({
-          id: v4(),
-          content: newTodo,
-          isCompleted: false,
-        });
-      }
-    },
-    getFilterStatue() {
-      switch (window.location.hash) {
-        case '#/completed':
-          this.filter = 'completed';
-          break;
-        case '#/active':
-          this.filter = 'active';
-          break;
-        default:
-          this.filter = 'all';
-      }
+    ...mapMutations([
+      mutations.SET_FILTER,
+    ]),
+    changeFilter() {
+      this[mutations.SET_FILTER]({ filter: getFilter() });
     },
     toggleComplete(id) {
       const targetIndex = this.todos.findIndex(target => target.id === id);

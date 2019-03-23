@@ -4,27 +4,29 @@
     <label htmlFor="toggle-all" @click="checkAll">Mark all async complete</label>
     <ul class="todo-list">
       <todo-item
-        v-for="item in todos"
-        :item="item"
-        :key="item.id"
-        :updateTodo="updateTodo"
-        :deleteTodo="deleteTodo"
-        :toggleComplete="toggleComplete"
+        v-for="id in filteredIds"
+        :key="id"
+        :id="id"
       />
     </ul>
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex';
+import * as actions from '@/store/actions';
 import TodoItem from './TodoItem.vue';
 
 export default {
-  props: {
-    todos: Array,
-    isAllCompleted: Boolean,
-    checkAll: Function,
-    updateTodo: Function,
-    deleteTodo: Function,
-    toggleComplete: Function,
+  computed: {
+    ...mapGetters([
+      'filteredIds',
+      'isAllCompleted',
+    ]),
+  },
+  methods: {
+    ...mapActions({
+      checkAll: actions.CHECK_ALL,
+    }),
   },
   components: {
     TodoItem,
